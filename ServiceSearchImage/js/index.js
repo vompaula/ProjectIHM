@@ -1,13 +1,14 @@
 //
 //  index.js
 //  ServiceSearchImage version 1.0
-//  Created by Ingenuity i/o on 2023/01/20
+//  Created by Ingenuity i/o on 2023/01/24
 //
-//  Il va appeler le service de whiteboard addImageFromUrl
+//  no description
 //  Copyright © 2022 Ingenuity i/o. All rights reserved.
 //
 
 //server connection
+
 function isConnectedToServerChanged(isConnected)
 {
     if (isConnected)
@@ -18,10 +19,12 @@ function isConnectedToServerChanged(isConnected)
 
 //inputs
 function ReceiveResponsesInputCallback(type, name, valueType, value, myData) {
-    console.log(name + " changed to " + value);
+    console.log(name + " changed (" + value.byteLength + " bytes)");
+    var hexString = Array.prototype.map.call(new Uint8Array(value), x => (('0' + x.toString(16)).slice(-2))).join("");
+    console.log("Hexadecimal string : " + hexString);
     //add code here if needed
 
-    document.getElementById("ReceiveResponses_input").innerHTML = value;
+    document.getElementById("ReceiveResponses_input").innerHTML = value.byteLength + " bytes";
 }
 
 
@@ -29,11 +32,10 @@ IGS.netSetServerURL("ws://localhost:5000");
 IGS.agentSetName("ServiceSearchImage");
 IGS.observeWebSocketState(isConnectedToServerChanged);
 
-IGS.definitionSetDescription("Il va appeler le service de whiteboard addImageFromUrl");
 IGS.definitionSetVersion("1.0");
 
 
-IGS.inputCreate("ReceiveResponses", iopTypes.IGS_STRING_T, "");
+IGS.inputCreate("ReceiveResponses", iopTypes.IGS_DATA_T, new ArrayBuffer());
 
 IGS.outputCreate("ShowImage", iopTypes.IGS_IMPULSION_T, "");
 
@@ -53,7 +55,13 @@ document.getElementById("serverURL").value = IGS.netServerURL();
 document.getElementById("name").innerHTML = IGS.agentName();
 
 function executeAction() {
-    //add code here if needed
+    let argList = [] ;
+    const url = String(document.getElementById("url").value);
+    console.log("url "+ url);
+    argList = IGS.serviceArgsAddString(argList, url);
+    argList = IGS.serviceArgsAddDouble(argList, 200);
+    argList = IGS.serviceArgsAddDouble(argList, 200);
+    IGS.serviceCall("Whiteboard",  "addImageFromUrl",argList,"");
 }
 
 //update websocket config
