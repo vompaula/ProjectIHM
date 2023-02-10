@@ -1,0 +1,8 @@
+{"command":
+  [{"product":"robe", 
+    "color": ["rose"],
+     "size":["All"]},
+   {"product":"chapeau", 
+    "color":["noir"], 
+    "size":["All"]}] , 
+   "request":"Je cherche une robe rose et un chapeau noir"}

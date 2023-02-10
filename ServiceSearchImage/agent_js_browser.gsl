@@ -1,3 +1,74 @@
+.# > name="1- JS agent in the web navigator"
+.# > keyword="JS"
+.# > description="An HTML/CSS/JS agent to be connected to an Ingscape platform via an Ingescape proxy."
+.# > agentMode="ONE"
+.# > onlyAgentDefinitionSupport="true"
+.template 0
+function typeToIGSType (type)
+   if (type = "STRING")
+       return "iopTypes.IGS_STRING_T"
+   elsif (type = "INTEGER")
+       return "iopTypes.IGS_INTEGER_T"
+   elsif (type = "DOUBLE")
+       return "iopTypes.IGS_DOUBLE_T"
+   elsif (type = "BOOL")
+       return "iopTypes.IGS_BOOL_T"
+   elsif (type = "IMPULSION")
+       return "iopTypes.IGS_IMPULSION_T"
+   elsif (type = "DATA")
+       return "iopTypes.IGS_DATA_T"
+   endif
+endfunction typeToIGSType
+.endtemplate
+.
+.template 1
+.ignorecase = 0
+.
+.####################################################################################
+.echo "Creating directories structure ..."
+.directory.create("js")
+.directory.create("css")
+.
+.####################################################################################
+.echo "Generating css/styles.css ..."
+.output "css/styles.css"
+/*
+	styles.css
+	$(definition.name) $(definition.version ?? "version " + definition.version)
+	Created $(defined(definition.author) ?? "by " + definition.author ? "") on $(date.picture())
+
+	$(defined(definition->description) ?? definition->description. ? "no description")
+	$(definition.copyright)
+*/
+
+div.center-div {
+	margin: 0 auto;
+	width: 100%;
+	text-align: center;
+}
+
+table {
+	width: auto;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+tr {
+	height: 35px;
+}
+
+td {
+	padding:0 15px;
+}
+
+input:invalid {
+	border: red solid 2px;
+}
+
+.
+.####################################################################################
+.echo "Generating js/ingescape.js ..."
+.output "js/ingescape.js"
 /*
  *	ingescape.js
  *
@@ -44,9 +115,9 @@ class Agent {
     static _isConnected = false;
 
     static _iopTypesToString() {
-        var toString = "Iop types on Ingescape platform :\n"
+        var toString = "Iop types on Ingescape platform :\\n"
         for (var type in iopTypes) {
-            toString += type + " = " + iopTypes[type] + "\n";
+            toString += type + " = " + iopTypes[type] + "\\n";
         }
         return toString;
     }
@@ -1580,3 +1651,372 @@ class IGS {
 }
 
 
+.
+.####################################################################################
+.echo "Generating js/index.js ..."
+.output "js/index.js"
+//
+//  index.js
+//  $(definition.name) $(definition.version ?? "version " + definition.version)
+//  Created $(defined(definition.author) ?? "by " + definition.author ? "") on $(date.picture())
+//
+//  $(defined(definition->description) ?? definition->description. ? "no description")
+//  $(definition.copyright)
+//
+
+//server connection
+function isConnectedToServerChanged(isConnected)
+{
+    if (isConnected)
+        document.getElementById("connectedToServer").style.background = 'green';
+    else
+        document.getElementById("connectedToServer").style.background = 'red';
+}
+
+.if (count(definition.input))
+//inputs
+.endif
+.for definition.input
+.if (input.type = "IMPULSION")
+var $(input.name)InputCount = 0;
+.endif
+function $(input.name)InputCallback(type, name, valueType, value, myData) {
+.if (input.type = "IMPULSION")
+    console.log(name + " changed (impulsion)");
+.elsif (input.type = "DATA")
+    console.log(name + " changed (" + value.byteLength + " bytes)");
+    var hexString = Array.prototype.map.call(new Uint8Array(value), x => (('0' + x.toString(16)).slice(-2))).join("");
+    console.log("Hexadecimal string : " + hexString);
+.else
+    console.log(name + " changed to " + value);
+.endif
+    //add code here if needed
+
+.if (input.type = "IMPULSION")
+    $(input.name)InputCount++;
+    document.getElementById("$(input.name)_input").innerHTML = $(input.name)InputCount + " times";
+.elsif (input.type = "DATA")
+    document.getElementById("$(input.name)_input").innerHTML = value.byteLength + " bytes";
+.else
+    document.getElementById("$(input.name)_input").innerHTML = value;
+.endif
+}
+
+.endfor
+.
+.if (count(definition.parameter))
+//parameters
+.endif
+.for definition.parameter
+function $(parameter.name)ParameterCallback(type, name, valueType, value, myData) {
+.if (parameter.type = "DATA")
+    console.log(name + " changed (" + value.byteLength + " bytes)");
+.else
+    console.log(name + " changed to " + value);
+.endif
+    //add code here if needed
+}
+
+.endfor
+.
+.if (count(definition.service))
+//services
+.endif
+.for definition.service
+function $(service.name)ServiceCallback(senderAgentName, senderAgentUUID, serviceName, serviceArguments, token, myData) {
+.argumentCnt = 0
+.if (count(argument))
+.for argument
+    var $(argument.name)Value = serviceArguments[$(argumentCnt)].value;
+.argumentCnt = argumentCnt + 1
+.endfor
+
+.endif
+    var log = senderAgentName + " called service " + serviceName;
+    console.log(log)
+    //add code here if needed
+
+    var serviceLogsTextArea = document.getElementById("services_logs");
+    serviceLogsTextArea.value = serviceLogsTextArea.value + log + "\\n";
+    serviceLogsTextArea.scrollTop = serviceLogsTextArea.scrollHeight;
+}
+.endfor
+
+IGS.netSetServerURL("ws://localhost:5000");
+IGS.agentSetName("$(definition.name)");
+IGS.observeWebSocketState(isConnectedToServerChanged);
+
+.if (defined (definition->description) & string.length(definition->description))
+IGS.definitionSetDescription("$(definition->description.)");
+.endif
+.if (defined (definition.version) & string.length(definition.version))
+IGS.definitionSetVersion("$(definition.version)");
+.endif
+
+
+.for definition.input
+.if (input.type = "INTEGER")
+IGS.inputCreate("$(input.name)", iopTypes.IGS_INTEGER_T, 0);
+.elsif (input.type = "IMPULSION")
+IGS.inputCreate("$(input.name)", iopTypes.IGS_IMPULSION_T, "");
+.elsif (input.type = "BOOL")
+IGS.inputCreate("$(input.name)", iopTypes.IGS_BOOL_T, false);
+.elsif (input.type = "DOUBLE")
+IGS.inputCreate("$(input.name)", iopTypes.IGS_DOUBLE_T, 0);
+.elsif (input.type = "STRING")
+IGS.inputCreate("$(input.name)", iopTypes.IGS_STRING_T, "");
+.elsif (input.type = "DATA")
+IGS.inputCreate("$(input.name)", iopTypes.IGS_DATA_T, new ArrayBuffer());
+.endif
+.endfor
+
+.for definition.output
+.if (output.type = "INTEGER")
+IGS.outputCreate("$(output.name)", iopTypes.IGS_INTEGER_T, 0);
+.elsif (output.type = "IMPULSION")
+IGS.outputCreate("$(output.name)", iopTypes.IGS_IMPULSION_T, "");
+.elsif (output.type = "BOOL")
+IGS.outputCreate("$(output.name)", iopTypes.IGS_BOOL_T, false);
+.elsif (output.type = "DOUBLE")
+IGS.outputCreate("$(output.name)", iopTypes.IGS_DOUBLE_T, 0);
+.elsif (output.type = "STRING")
+IGS.outputCreate("$(output.name)", iopTypes.IGS_STRING_T, "");
+.elsif (output.type = "DATA")
+IGS.outputCreate("$(output.name)", iopTypes.IGS_DATA_T, new ArrayBuffer());
+.endif
+.endfor
+
+.for definition.parameter
+.if (parameter.type = "INTEGER")
+IGS.parameterCreate("$(parameter.name)", iopTypes.IGS_INTEGER_T, 0);
+.elsif (parameter.type = "BOOL")
+IGS.parameterCreate("$(parameter.name)", iopTypes.IGS_BOOL_T, false);
+.elsif (parameter.type = "DOUBLE")
+IGS.parameterCreate("$(parameter.name)", iopTypes.IGS_DOUBLE_T, 0);
+.elsif (parameter.type = "STRING")
+IGS.parameterCreate("$(parameter.name)", iopTypes.IGS_STRING_T, "");
+.elsif (parameter.type = "DATA")
+IGS.parameterCreate("$(parameter.name)", iopTypes.IGS_DATA_T, new ArrayBuffer());
+.endif
+.endfor
+
+//Initialize agent
+.for definition.input
+IGS.observeInput("$(input.name)", $(input.name)InputCallback);
+.endfor
+.for definition.parameter
+IGS.observeParameter("$(parameter.name)", $(parameter.name)ParameterCallback);
+.endfor
+.for definition.service
+IGS.serviceInit("$(service.name)", $(service.name)ServiceCallback);
+.for argument
+IGS.serviceArgAdd("$(service.name)", "$(argument.name)", $(typeToIGSType(argument.type)));
+.endfor
+.endfor
+
+//actually start ingescape
+IGS.start();
+
+
+//
+// HTML example
+//
+
+document.getElementById("serverURL").value = IGS.netServerURL();
+document.getElementById("name").innerHTML = IGS.agentName();
+
+function executeAction() {
+    //add code here if needed
+}
+
+//update websocket config
+function setServerURL() {
+    IGS.netSetServerURL(document.getElementById("serverURL").value);
+}
+
+.if (count(definition.output))
+//write outputs
+.endif
+.for definition.output
+function set$(output.name)Output() {
+.if (output.type = "INTEGER")
+    IGS.outputSetInt("$(output.name)", Number(document.getElementById("$(output.name)_output").value));
+.elsif (output.type = "IMPULSION")
+    IGS.outputSetImpulsion("$(output.name)");
+.elsif (output.type = "BOOL")
+    var stringBool = document.getElementById("$(output.name)_output").value.toUpperCase();
+    if (stringBool === "TRUE")
+        IGS.outputSetBool("$(output.name)", true);
+    else if (stringBool === "FALSE")
+        IGS.outputSetBool("$(output.name)", false);
+.elsif (output.type = "DOUBLE")
+    IGS.outputSetDouble("$(output.name)", Number(document.getElementById("$(output.name)_output").value));
+.elsif (output.type = "STRING")
+    IGS.outputSetString("$(output.name)", document.getElementById("$(output.name)_output").value);
+.elsif (output.type = "DATA")
+    var dataHex = document.getElementById("$(output.name)_output").value;
+    if (dataHex.length === 0) {
+        IGS.outputSetData("$(output.name)", null);
+        return false;
+    }
+    else {
+        // split the string into pairs of octets
+        var pairs = dataHex.match(/[0-9A-Fa-f]{2}/g);
+        if (pairs) {
+            // dataHex is valid, convert the octets to integers
+            var uint8array = new Uint8Array(pairs.map(function (h) {
+                return parseInt(h, 16);
+            }));
+            IGS.outputSetData("$(output.name)", uint8array.buffer);
+            return false;
+        }
+    }
+    return true;
+.endif
+}
+
+.endfor
+.echo "Generating index.html ..."
+.output "index.html"
+<!--
+index.html
+$(definition.name) $(definition.version ?? "version " + definition.version)
+Created $(defined(definition.author) ?? "by " + definition.author ? "") on $(date.picture())
+
+$(defined(definition->description) ?? definition->description. ? "no description")
+$(definition.copyright)
+-->
+
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+	  	<meta charset="utf-8">
+	  	<title>Pseudo-agent Ingescape</title>
+	  	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	</head>
+
+  <body>
+      <div class="container">
+          <br>
+          <div class="center-div" >
+              Server URL <input type="text" id="serverURL">
+              <input type="button" value="Connect" onclick="setServerURL()" />
+              <div id="connectedToServer" style="vertical-align: middle; display:inline-block;border-radius: 30px;background: red; width:15px;height:15px"></div>
+          </div>
+          <br>
+          <div class="center-div">
+              <span id="name" style="font-size: 20px;"></span>
+          </div>
+          <br>
+          <div class="center-div">
+              <input type="button" value="Action button" onclick="executeAction()" />
+          </div>
+          <br>
+
+          <table>
+              <tr>
+.if (count(definition.input))
+                <td valign="top">
+                <table>
+                    <tbody>
+                        <tr align="center">
+                            <td colspan=2><b>Inputs</b></td>
+                        </tr>
+.for definition.input
+                        <tr>
+                            <td align="right">$(input.name)</td>
+                            <td align="left" id="$(input.name)_input"> no value yet</td>
+                        </tr>
+.endfor
+                    </tbody>
+                </table>
+                </td>
+.endif
+.if (count(definition.output))
+                <td valign="top">
+                <table>
+                    <tbody>
+                        <tr align="center">
+                            <td colspan=2><b>Outputs</b></td>
+                        </tr>
+.for definition.output
+.if (output.type = "INTEGER")
+                        <tr>
+                            <td align="right">$(output.name)</td>
+                            <td align="left">
+                                <input type="number" id="$(output.name)_output" step="1">
+                                <input type="button" value="&#10003" onclick="set$(output.name)Output()"/>
+                            </td>
+                        </tr>
+.elsif (output.type = "IMPULSION")
+                        <tr>
+                            <td align="right">$(output.name)</td>
+                            <td align="left">
+                                <input type="button" value="&#10003" onclick="set$(output.name)Output()"/>
+                            </td>
+                        </tr>
+.elsif (output.type = "BOOL")
+                        <tr>
+                            <td align="right">$(output.name)</td>
+                            <td align="left">
+                                <select id="$(output.name)_output">
+                                  <option value="true">TRUE</option>
+                                  <option value="false">FALSE</option>
+                                </select>
+                                <input type="button" value="&#10003" onclick="set$(output.name)Output()"/>
+                            </td>
+                        </tr>
+.elsif (output.type = "DOUBLE")
+                        <tr>
+                            <td align="right">$(output.name)</td>
+                            <td align="left">
+                                <input type="number" id="$(output.name)_output" step="0.1">
+                                <input type="button" value="&#10003" onclick="set$(output.name)Output()"/>
+                            </td>
+                        </tr>
+.elsif (output.type = "STRING")
+                        <tr>
+                            <td align="right">$(output.name)</td>
+                            <td align="left">
+                                <input type="text" id="$(output.name)_output">
+                                <input type="button" value="&#10003" onclick="set$(output.name)Output()"/>
+                            </td>
+                        </tr>
+.elsif (output.type = "DATA")
+                        <tr>
+                            <td align="right">$(output.name)</td>
+                            <td align="left">
+                                <form>
+                                    <input type="text" id="$(output.name)_output" title="Expected hexadecimal format" pattern="^(?:[0-9A-Fa-f]{2})+$">
+                                    <button onclick="return set$(output.name)Output()">&#10003</button>
+                                </form>
+                            </td>
+                        </tr>
+.endif
+.endfor
+                  </tbody>
+                </table>
+                </td>
+.endif
+              </tr>
+          </table>
+.if (count(definition.service))
+          <br>
+
+          <div class="center-div">
+            <b>Services</b>
+          </div>
+          <br>
+
+          <div class="center-div">
+            <textarea id="services_logs" cols="70" rows="5" style="overflow:auto;" readonly></textarea>
+          </div>
+.endif
+      </div>
+
+      <script src="js/ingescape.js" charset="utf-8"></script>
+      <script src="js/index.js" charset="utf-8"></script>
+	</body>
+</html>
+
+.endtemplate

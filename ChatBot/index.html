@@ -1,10 +1,10 @@
 <!--
 index.html
-ChatBot
-Created by Ingenuity i/o on 2023/01/20
+Chatbot version 1.0
+Created by Ingenuity i/o on 2023/02/10
 
 no description
-Copyright © 2022 Ingenuity i/o. All rights reserved.
+Copyright © 2023 Ingenuity i/o. All rights reserved.
 -->
 
 <!DOCTYPE html>
@@ -42,12 +42,12 @@ Copyright © 2022 Ingenuity i/o. All rights reserved.
                             <td colspan=2><b>Inputs</b></td>
                         </tr>
                         <tr>
-                            <td align="right">clear</td>
-                            <td align="left" id="clear_input"> no value yet</td>
+                            <td align="right">Command</td>
+                            <td align="left" id="Command_input"> no value yet</td>
                         </tr>
                         <tr>
-                            <td align="right">lastChatMessage</td>
-                            <td align="left" id="lastChatMessage_input"> no value yet</td>
+                            <td align="right">data</td>
+                            <td align="left" id="data_input"> no value yet</td>
                         </tr>
                     </tbody>
                 </table>
@@ -59,24 +59,17 @@ Copyright © 2022 Ingenuity i/o. All rights reserved.
                             <td colspan=2><b>Outputs</b></td>
                         </tr>
                         <tr>
-                            <td align="right">ui_error</td>
+                            <td align="right">JSON</td>
                             <td align="left">
-                                <input type="text" id="ui_error_output">
-                                <input type="button" value="&#10003" onclick="setui_errorOutput()"/>
+                                <input type="text" id="JSON_output">
+                                <input type="button" value="&#10003" onclick="setJSONOutput()"/>
                             </td>
                         </tr>
                         <tr>
-                            <td align="right">lastChatMessage</td>
+                            <td align="right">reducedData</td>
                             <td align="left">
-                                <input type="text" id="lastChatMessage_output">
-                                <input type="button" value="&#10003" onclick="setlastChatMessageOutput()"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="right">ResponseChat</td>
-                            <td align="left">
-                                <input type="text" id="ResponseChat_output">
-                                <input type="button" value="&#10003" onclick="setResponseChatOutput()"/>
+                                <input type="text" id="reducedData_output">
+                                <input type="button" value="&#10003" onclick="setreducedDataOutput()"/>
                             </td>
                         </tr>
                   </tbody>
@@ -84,16 +77,6 @@ Copyright © 2022 Ingenuity i/o. All rights reserved.
                 </td>
               </tr>
           </table>
-          <br>
-
-          <div class="center-div">
-            <b>Services</b>
-          </div>
-          <br>
-
-          <div class="center-div">
-            <textarea id="services_logs" cols="70" rows="5" style="overflow:auto;" readonly></textarea>
-          </div>
       </div>
 
       <script src="js/ingescape.js" charset="utf-8"></script>
