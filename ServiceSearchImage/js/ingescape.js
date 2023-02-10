@@ -1577,6 +1577,6 @@ class IGS {
     static _globalAgent_service(agent, senderAgentName, senderAgentUUID, serviceName, argumentsArray, token, myData) {
         (myData.cb)(senderAgentName, senderAgentUUID, serviceName, argumentsArray, token, myData.myData);
     }
-}
 
+}
 
