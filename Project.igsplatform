@@ -26,395 +26,6 @@
                     "inputs": [
                         {
                             "description": "",
-                            "name": "clear",
-                            "type": "IMPULSION"
-                        },
-                        {
-                            "description": "",
-                            "name": "lastChatMessage",
-                            "type": "STRING"
-                        }
-                    ],
-                    "isDynamic": false,
-                    "name": "ChatBot",
-                    "outputs": [
-                        {
-                            "description": "",
-                            "name": "ui_error",
-                            "type": "STRING"
-                        },
-                        {
-                            "description": "",
-                            "name": "chatMessage",
-                            "type": "STRING"
-                        },
-                        {
-                            "description": "",
-                            "name": "ResponseChat",
-                            "type": "DATA"
-                        }
-                    ],
-                    "parameters": [
-                    ],
-                    "services": [
-                        {
-                            "arguments": [
-                                {
-                                    "name": "message",
-                                    "type": "STRING"
-                                }
-                            ],
-                            "name": "chat"
-                        },
-                        {
-                            "arguments": [
-                            ],
-                            "name": "snapshot",
-                            "replies": [
-                                {
-                                    "arguments": [
-                                        {
-                                            "name": "base64Png",
-                                            "type": "DATA"
-                                        }
-                                    ],
-                                    "name": "snapshotResult"
-                                }
-                            ]
-                        },
-                        {
-                            "arguments": [
-                            ],
-                            "name": "clear"
-                        },
-                        {
-                            "arguments": [
-                                {
-                                    "name": "type",
-                                    "type": "STRING"
-                                },
-                                {
-                                    "name": "x",
-                                    "type": "DOUBLE"
-                                },
-                                {
-                                    "name": "y",
-                                    "type": "DOUBLE"
-                                },
-                                {
-                                    "name": "width",
-                                    "type": "DOUBLE"
-                                },
-                                {
-                                    "name": "height",
-                                    "type": "DOUBLE"
-                                },
-                                {
-                                    "name": "fill",
-                                    "type": "STRING"
-                                },
-                                {
-                                    "name": "stroke",
-                                    "type": "STRING"
-                                },
-                                {
-                                    "name": "strokeWidth",
-                                    "type": "DOUBLE"
-                                }
-                            ],
-                            "name": "addShape",
-                            "replies": [
-                                {
-                                    "arguments": [
-                                        {
-                                            "name": "elementId",
-                                            "type": "INTEGER"
-                                        }
-                                    ],
-                                    "name": "elementCreated"
-                                }
-                            ]
-                        },
-                        {
-                            "arguments": [
-                                {
-                                    "name": "text",
-                                    "type": "STRING"
-                                },
-                                {
-                                    "name": "x",
-                                    "type": "DOUBLE"
-                                },
-                                {
-                                    "name": "y",
-                                    "type": "DOUBLE"
-                                },
-                                {
-                                    "name": "color",
-                                    "type": "STRING"
-                                }
-                            ],
-                            "name": "addText",
-                            "replies": [
-                                {
-                                    "arguments": [
-                                        {
-                                            "name": "elementId",
-                                            "type": "INTEGER"
-                                        }
-                                    ],
-                                    "name": "elementCreated"
-                                }
-                            ]
-                        },
-                        {
-                            "arguments": [
-                                {
-                                    "name": "base64",
-                                    "type": "DATA"
-                                },
-                                {
-                                    "name": "x",
-                                    "type": "DOUBLE"
-                                },
-                                {
-                                    "name": "y",
-                                    "type": "DOUBLE"
-                                },
-                                {
-                                    "name": "width",
-                                    "type": "DOUBLE"
-                                },
-                                {
-                                    "name": "height",
-                                    "type": "DOUBLE"
-                                }
-                            ],
-                            "name": "addImage",
-                            "replies": [
-                                {
-                                    "arguments": [
-                                        {
-                                            "name": "elementId",
-                                            "type": "INTEGER"
-                                        }
-                                    ],
-                                    "name": "elementCreated"
-                                }
-                            ]
-                        },
-                        {
-                            "arguments": [
-                                {
-                                    "name": "url",
-                                    "type": "STRING"
-                                },
-                                {
-                                    "name": "x",
-                                    "type": "DOUBLE"
-                                },
-                                {
-                                    "name": "y",
-                                    "type": "DOUBLE"
-                                }
-                            ],
-                            "name": "addImageFromUrl",
-                            "replies": [
-                                {
-                                    "arguments": [
-                                        {
-                                            "name": "elementId",
-                                            "type": "INTEGER"
-                                        }
-                                    ],
-                                    "name": "elementCreated"
-                                }
-                            ]
-                        },
-                        {
-                            "arguments": [
-                                {
-                                    "name": "elementId",
-                                    "type": "INTEGER"
-                                }
-                            ],
-                            "name": "remove",
-                            "replies": [
-                                {
-                                    "arguments": [
-                                        {
-                                            "name": "succeeded",
-                                            "type": "BOOL"
-                                        }
-                                    ],
-                                    "name": "actionResult"
-                                }
-                            ]
-                        },
-                        {
-                            "arguments": [
-                                {
-                                    "name": "elementId",
-                                    "type": "INTEGER"
-                                },
-                                {
-                                    "name": "dx",
-                                    "type": "DOUBLE"
-                                },
-                                {
-                                    "name": "dy",
-                                    "type": "DOUBLE"
-                                }
-                            ],
-                            "name": "translate",
-                            "replies": [
-                                {
-                                    "arguments": [
-                                        {
-                                            "name": "succeeded",
-                                            "type": "BOOL"
-                                        }
-                                    ],
-                                    "name": "actionResult"
-                                }
-                            ]
-                        },
-                        {
-                            "arguments": [
-                                {
-                                    "name": "elementId",
-                                    "type": "INTEGER"
-                                },
-                                {
-                                    "name": "x",
-                                    "type": "DOUBLE"
-                                },
-                                {
-                                    "name": "y",
-                                    "type": "DOUBLE"
-                                }
-                            ],
-                            "name": "moveTo",
-                            "replies": [
-                                {
-                                    "arguments": [
-                                        {
-                                            "name": "succeeded",
-                                            "type": "BOOL"
-                                        }
-                                    ],
-                                    "name": "actionResult"
-                                }
-                            ]
-                        },
-                        {
-                            "arguments": [
-                            ],
-                            "name": "getElementIds",
-                            "replies": [
-                                {
-                                    "arguments": [
-                                        {
-                                            "name": "jsonArray",
-                                            "type": "STRING"
-                                        }
-                                    ],
-                                    "name": "elementIds"
-                                }
-                            ]
-                        },
-                        {
-                            "arguments": [
-                            ],
-                            "name": "getElements",
-                            "replies": [
-                                {
-                                    "arguments": [
-                                        {
-                                            "name": "jsonArray",
-                                            "type": "STRING"
-                                        }
-                                    ],
-                                    "name": "elements"
-                                }
-                            ]
-                        }
-                    ],
-                    "version": ""
-                },
-                "identity": "ChatBot",
-                "instances": [
-                ],
-                "view": {
-                    "height": 40,
-                    "isCollapsed": false,
-                    "positionX": 1165,
-                    "positionY": -98,
-                    "positionZ": 2.219999999999996,
-                    "width": 252
-                }
-            },
-            {
-                "data": {
-                },
-                "definition": {
-                    "description": "",
-                    "family": "",
-                    "inputs": [
-                        {
-                            "description": "",
-                            "name": "ReceiveResponses",
-                            "type": "DATA"
-                        }
-                    ],
-                    "isDynamic": false,
-                    "name": "ServiceSearchImage",
-                    "outputs": [
-                        {
-                            "description": "",
-                            "name": "ShowImage",
-                            "type": "IMPULSION"
-                        }
-                    ],
-                    "parameters": [
-                    ],
-                    "services": [
-                    ],
-                    "version": "1.0"
-                },
-                "identity": "ServiceSearchImage",
-                "instances": [
-                    {
-                        "commandLine": "/Applications/Ingescape/Ingescape-Circle.app/Contents/agents/igsProxy/igsProxy --port 5678 --device en0 --name Proxy --license /Users/vompaula/Documents/Ingescape/licenses/ --ws ws://localhost:5000",
-                        "hostname": "MacBook-Air-de-Paula.local",
-                        "ipAddress": "172.22.223.130",
-                        "mac": "A4:D1:8C:DC:79:B0"
-                    },
-                    {
-                        "commandLine": "/Applications/Ingescape/Ingescape-Circle.app/Contents/agents/igsProxy/igsProxy --port 5678 --device en0 --license /Users/vompaula/Documents/Ingescape/licenses --ws ws://localhost:5000",
-                        "hostname": "MacBook-Air-de-Paula.local",
-                        "ipAddress": "172.22.223.130",
-                        "mac": "A4:D1:8C:DC:79:B0"
-                    }
-                ],
-                "view": {
-                    "height": 40,
-                    "isCollapsed": false,
-                    "positionX": 1475,
-                    "positionY": -40,
-                    "positionZ": 2.4999999999999902,
-                    "width": 252
-                }
-            },
-            {
-                "data": {
-                },
-                "definition": {
-                    "description": "",
-                    "family": "",
-                    "inputs": [
-                        {
-                            "description": "",
                             "name": "title",
                             "type": "STRING"
                         },
@@ -436,6 +47,11 @@
                         {
                             "description": "",
                             "name": "ui_command",
+                            "type": "STRING"
+                        },
+                        {
+                            "description": "",
+                            "name": "value",
                             "type": "STRING"
                         }
                     ],
@@ -742,6 +358,62 @@
                                     "name": "elements"
                                 }
                             ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "elementId",
+                                    "type": "INTEGER"
+                                },
+                                {
+                                    "name": "property",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "value",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "name": "setStringProperty",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "succeeded",
+                                            "type": "BOOL"
+                                        }
+                                    ],
+                                    "name": "actionResult"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "elementId",
+                                    "type": "INTEGER"
+                                },
+                                {
+                                    "name": "property",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "value",
+                                    "type": "DOUBLE"
+                                }
+                            ],
+                            "name": "setDoubleProperty",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "succeeded",
+                                            "type": "BOOL"
+                                        }
+                                    ],
+                                    "name": "actionResult"
+                                }
+                            ]
                         }
                     ],
                     "version": ""
@@ -749,30 +421,345 @@
                 "identity": "Whiteboard",
                 "instances": [
                     {
-                        "commandLine": "/private/var/folders/gl/sf9j_b3j5b3gx80b6489j4h00000gn/T/AppTranslocation/A6EFAEA4-39A5-4054-A1A4-BB8C768BA844/d/Whiteboard.app/Contents/MacOS/Whiteboard",
-                        "hostname": "MacBook-Air-de-Paula.local",
-                        "ipAddress": "172.22.223.130",
-                        "mac": "A4:D1:8C:DC:79:B0"
+                        "commandLine": "/home/lchavoit/Téléchargements/opt/Whiteboard/bin/Whiteboard --port=5675",
+                        "hostname": "backus.enseeiht.fr",
+                        "ipAddress": "147.127.133.114"
                     },
                     {
-                        "commandLine": "/Users/vompaula/Downloads/Whiteboard.app/Contents/MacOS/Whiteboard --device en0 --port 5678",
-                        "hostname": "MacBook-Air-de-Paula.local",
-                        "ipAddress": "172.22.223.130",
-                        "mac": "A4:D1:8C:DC:79:B0"
+                        "commandLine": "/home/arenard2/3A/IHM/opt/Whiteboard/bin/Whiteboard --port=5675",
+                        "hostname": "neumann.enseeiht.fr",
+                        "ipAddress": "147.127.133.109",
+                        "mac": "D8:9E:F3:41:24:43"
                     },
                     {
-                        "commandLine": "/Users/vompaula/Library/CloudStorage/OneDrive-PontificiaUniversidadJaveriana/ENSEEEIHT/Années/3/IHM/Whiteboard.app/Contents/MacOS/Whiteboard --device en0 --port 5678",
-                        "hostname": "MacBook-Air-de-Paula.local",
-                        "ipAddress": "172.22.223.130",
-                        "mac": "A4:D1:8C:DC:79:B0"
+                        "commandLine": "/home/mhenry2/Téléchargements/Whiteboard-1.0.0_0-amd64/opt/Whiteboard/bin/Whiteboard --port=5675",
+                        "hostname": "moore.enseeiht.fr",
+                        "ipAddress": "147.127.133.108"
+                    },
+                    {
+                        "commandLine": "/home/akina/Téléchargements/Whiteboard-1.0.0_0-amd64/opt/Whiteboard/bin/Whiteboard --port=5675 --device=br-074ebb669530",
+                        "hostname": "akina-VirtualBox",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:F6:3B:93"
+                    },
+                    {
+                        "commandLine": "/home/akina/Téléchargements/Whiteboard-1.0.0_0-amd64/opt/Whiteboard/bin/Whiteboard --port=5675 --device=enp0s3",
+                        "hostname": "akina-VirtualBox",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:F6:3B:93"
+                    },
+                    {
+                        "commandLine": "/home/willem/Téléchargements/Whiteboard-1.0.0_0-amd64/opt/Whiteboard/bin/Whiteboard --port=5670",
+                        "hostname": "akina-VirtualBox",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:F6:3B:93"
+                    },
+                    {
+                        "commandLine": "\"C:\\Users\\Hp Probook 440\\Desktop\\Gabriela\\INP\\IHM\\Whiteboard_windows\\Whiteboard\\Whiteboard.exe\" --device Wi-Fi --port 5670",
+                        "hostname": "DESKTOP-TDFTRTB",
+                        "ipAddress": "10.192.29.115",
+                        "mac": "48:E2:44:AC:E6:7B"
+                    },
+                    {
+                        "commandLine": "\"C:\\Users\\Hp Probook 440\\Desktop\\Gabriela\\INP\\IHM\\Whiteboard_windows\\Whiteboard\\Whiteboard.exe\" --port=5670 --device=Wi-Fi",
+                        "hostname": "DESKTOP-TDFTRTB",
+                        "ipAddress": "10.192.29.115",
+                        "mac": "48:E2:44:AC:E6:7B"
                     }
                 ],
                 "view": {
                     "height": 40,
                     "isCollapsed": false,
-                    "positionX": 734,
-                    "positionY": -124,
-                    "positionZ": 2.51999999999999,
+                    "positionX": -90,
+                    "positionY": 143,
+                    "positionZ": 7.589999999999882,
+                    "width": 252
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "Command",
+                            "type": "STRING"
+                        },
+                        {
+                            "description": "",
+                            "name": "data",
+                            "type": "STRING"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "Chatbot",
+                    "outputs": [
+                        {
+                            "description": "",
+                            "name": "JSON",
+                            "type": "STRING"
+                        },
+                        {
+                            "description": "",
+                            "name": "reducedData",
+                            "type": "STRING"
+                        }
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": "1.0"
+                },
+                "identity": "Chatbot",
+                "instances": [
+                    {
+                        "commandLine": "/usr/bin/python3 src/main.py",
+                        "hostname": "akina-VirtualBox",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:F6:3B:93"
+                    },
+                    {
+                        "commandLine": "/usr/bin/python3 src/main.py",
+                        "hostname": "akina-VirtualBox",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:F6:3B:93"
+                    },
+                    {
+                        "commandLine": "/usr/bin/python3 main.py",
+                        "hostname": "akina-VirtualBox",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:F6:3B:93"
+                    },
+                    {
+                        "commandLine": "\"C:\\Program Files\\Ingescape\\Ingescape Circle\\igsProxy.exe\" --port 5670 --device Wi-Fi --name Proxy --license \"C:/Users/Hp Probook 440/Documents/Ingescape/licenses\" --ws ws://localhost:5001",
+                        "hostname": "DESKTOP-TDFTRTB",
+                        "ipAddress": "10.192.29.115",
+                        "mac": "48:E2:44:AC:E6:7B"
+                    }
+                ],
+                "view": {
+                    "height": 40,
+                    "isCollapsed": false,
+                    "positionX": -846,
+                    "positionY": 327,
+                    "positionZ": 7.389999999999886,
+                    "width": 252
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "reducedData",
+                            "type": "STRING"
+                        },
+                        {
+                            "description": "",
+                            "name": "input",
+                            "type": "STRING"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "CommandParser",
+                    "outputs": [
+                        {
+                            "description": "",
+                            "name": "Command",
+                            "type": "STRING"
+                        }
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": "1.0"
+                },
+                "identity": "CommandParser",
+                "instances": [
+                    {
+                        "commandLine": "/opt/Ingescape-Circle/bin/igsProxy --port 5670 --device enp0s3 --name Proxy --license /home/willem/Documents/Ingescape/licenses --ws ws://localhost:5000",
+                        "hostname": "akina-VirtualBox",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:F6:3B:93"
+                    },
+                    {
+                        "commandLine": "/opt/Ingescape-Circle/bin/igsProxy --port 5670 --device enp0s3 --name Proxy --license /home/willem/Documents/Ingescape/licenses --ws ws://localhost:5000",
+                        "hostname": "akina-VirtualBox",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:F6:3B:93"
+                    },
+                    {
+                        "commandLine": "/opt/Ingescape-Circle/bin/igsProxy --port 5670 --device enp0s3 --license /home/akina/Documents/Ingescape/licenses --ws ws://localhost:5000",
+                        "hostname": "akina-VirtualBox",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:F6:3B:93"
+                    }
+                ],
+                "view": {
+                    "height": 40,
+                    "isCollapsed": false,
+                    "positionX": -1217,
+                    "positionY": 331,
+                    "positionZ": 7.409999999999886,
+                    "width": 252
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "JSON",
+                            "type": "STRING"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "TextGenerator",
+                    "outputs": [
+                        {
+                            "description": "",
+                            "name": "Text",
+                            "type": "STRING"
+                        },
+                        {
+                            "description": "",
+                            "name": "Valid",
+                            "type": "IMPULSION"
+                        },
+                        {
+                            "description": "",
+                            "name": "Error",
+                            "type": "IMPULSION"
+                        }
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": "1.0"
+                },
+                "identity": "TextGenerator",
+                "instances": [
+                    {
+                        "commandLine": "/usr/bin/python3 src/main.py",
+                        "hostname": "akina-VirtualBox",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:F6:3B:93"
+                    }
+                ],
+                "view": {
+                    "height": 40,
+                    "isCollapsed": false,
+                    "positionX": -397,
+                    "positionY": 581,
+                    "positionZ": 7.369999999999886,
+                    "width": 252
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "Products",
+                            "type": "STRING"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "ServiceSearchImage",
+                    "outputs": [
+                        {
+                            "description": "",
+                            "name": "data",
+                            "type": "STRING"
+                        },
+                        {
+                            "description": "",
+                            "name": "ShowImage",
+                            "type": "IMPULSION"
+                        }
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": "1.0"
+                },
+                "identity": "ServiceSearchImage",
+                "instances": [
+                    {
+                        "commandLine": "\"C:\\Program Files\\Ingescape\\Ingescape Circle\\igsProxy.exe\" --port 5670 --device \"Wi-Fi\" --name ServiceSearchImage --license \"C:/Users/Hp Probook 440/Documents/Ingescape/licenses\" --ws ws://localhost:5000",
+                        "hostname": "DESKTOP-TDFTRTB",
+                        "ipAddress": "10.192.29.115",
+                        "mac": "48:E2:44:AC:E6:7B"
+                    },
+                    {
+                        "commandLine": "\"C:\\Program Files\\Ingescape\\Ingescape Circle\\igsProxy.exe\" --port 5670 --device Wi-Fi --name Proxy --license \"C:/Users/Hp Probook 440/Documents/Ingescape/licenses\" --ws ws://localhost:5000",
+                        "hostname": "DESKTOP-TDFTRTB",
+                        "ipAddress": "10.192.29.115",
+                        "mac": "48:E2:44:AC:E6:7B"
+                    }
+                ],
+                "view": {
+                    "height": 40,
+                    "isCollapsed": false,
+                    "positionX": -854,
+                    "positionY": 111,
+                    "positionZ": 7.449999999999885,
+                    "width": 252
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "ca2ffa9faabe4781a21e590fabeabc67",
+                    "inputs": [
+                    ],
+                    "isDynamic": false,
+                    "name": "Proxy",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "f795ca71-2894-4e4f-92fa-09e73f391498",
+                "instances": [
+                    {
+                        "commandLine": "\"/opt/Ingescape-Circle/bin/igsProxy\" --port 5670 --device \"Wi-Fi\" --license \"C:/Users/Hp Probook 440/Documents/Ingescape/licenses\" --ws ws://localhost:5000",
+                        "hostname": "akina-VirtualBox",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:F6:3B:93"
+                    }
+                ],
+                "lastKnowAgentUUID": "CDCB022CE1AE2467B5507F4B0FA4BC40",
+                "view": {
+                    "height": 44,
+                    "isCollapsed": false,
+                    "positionX": -1215,
+                    "positionY": 473,
+                    "positionZ": 7.419999999999885,
                     "width": 252
                 }
             },
@@ -794,44 +781,153 @@
                     ],
                     "version": "dynamic"
                 },
-                "identity": "0D29FB5B73EC4A26ADD7A5D19F04AD59",
+                "identity": "9E984675153B5E468235B5AC79E3F063",
                 "instances": [
                     {
-                        "commandLine": "\"/Applications/Ingescape/Ingescape-Circle.app/Contents/agents/igsProxy/igsProxy\" --port 5678 --name Proxy --license \"/Users/vompaula/Documents/Ingescape/licenses\" --ws ws://localhost:5000",
-                        "hostname": "MacBook-Air-de-Paula.local",
-                        "ipAddress": "172.22.223.130",
-                        "mac": "A4:D1:8C:DC:79:B0"
+                        "commandLine": "\"C:\\Program Files\\Ingescape\\Ingescape Circle\\igsProxy.exe\" --port 5670 --device \"Wi-Fi\" --name Proxy --license \"C:/Users/Hp Probook 440/Documents/Ingescape/licenses\" --ws ws://localhost:5001",
+                        "hostname": "DESKTOP-TDFTRTB",
+                        "ipAddress": "10.192.29.115",
+                        "mac": "48:E2:44:AC:E6:7B"
                     }
                 ],
-                "lastKnowAgentUUID": "B7AA61664D4945F9AB10E86F08AA3AE1",
+                "lastKnowAgentUUID": "9E984675153B5E468235B5AC79E3F063",
                 "view": {
                     "height": 44,
                     "isCollapsed": false,
-                    "positionX": 1477,
-                    "positionY": 139,
-                    "positionZ": 2.549999999999989,
+                    "positionX": -48,
+                    "positionY": -181,
+                    "positionZ": 7.3199999999998875,
+                    "width": 252
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "ca2ffa9faabe4781a21e590fabeabc67",
+                    "inputs": [
+                    ],
+                    "isDynamic": false,
+                    "name": "Proxy",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": "dynamic"
+                },
+                "identity": "699DEFF47D074B4CBECB66BBD0FDF9E5",
+                "instances": [
+                    {
+                        "commandLine": "\"C:\\Program Files\\Ingescape\\Ingescape Circle\\igsProxy.exe\" --port 5670 --device \"Wi-Fi\" --name Proxy --license \"C:/Users/Hp Probook 440/Documents/Ingescape/licenses\" --ws ws://localhost:5000",
+                        "hostname": "DESKTOP-TDFTRTB",
+                        "ipAddress": "10.192.29.115",
+                        "mac": "48:E2:44:AC:E6:7B"
+                    }
+                ],
+                "lastKnowAgentUUID": "9288604B16A4184ABC604119BE5DA80C",
+                "view": {
+                    "height": 44,
+                    "isCollapsed": false,
+                    "positionX": -48,
+                    "positionY": 15,
+                    "positionZ": 7.4599999999998845,
                     "width": 252
                 }
             }
         ],
         "mappings": [
             {
-                "fromAgent": "ChatBot",
-                "fromInput": "lastChatMessage",
+                "fromAgent": "TextGenerator",
+                "fromInput": "JSON",
+                "toAgent": "Chatbot",
+                "toOutput": "JSON"
+            },
+            {
+                "fromAgent": "CommandParser",
+                "fromInput": "reducedData",
+                "toAgent": "Chatbot",
+                "toOutput": "reducedData"
+            },
+            {
+                "fromAgent": "46bf5765-2c59-4c63-8fea-fc3bc34e69da",
+                "fromInput": "trigger",
+                "toAgent": "TextGenerator",
+                "toOutput": "Valid"
+            },
+            {
+                "fromAgent": "787342eb-463d-497f-9b55-4d7f8e019ab2",
+                "fromInput": "trigger",
+                "toAgent": "TextGenerator",
+                "toOutput": "Error"
+            },
+            {
+                "fromAgent": "d7b17fdf-ff07-4241-b66f-f6d12699ab20",
+                "fromInput": "wildcard",
                 "toAgent": "Whiteboard",
                 "toOutput": "lastChatMessage"
             },
             {
-                "fromAgent": "Whiteboard",
-                "fromInput": "title",
-                "toAgent": "15726165-1066-4262-a1bc-b15971c0596d",
-                "toOutput": "value"
+                "fromAgent": "bdd51823-08f5-474f-a506-2727a5a34b7d",
+                "fromInput": "wildcard",
+                "toAgent": "Whiteboard",
+                "toOutput": "lastAction"
+            },
+            {
+                "fromAgent": "948514c2-7d6a-401f-85d6-df78e8a114b4",
+                "fromInput": "wildcard",
+                "toAgent": "Chatbot",
+                "toOutput": "JSON"
+            },
+            {
+                "fromAgent": "e3b74eec-362d-4238-8fba-734efbe02a75",
+                "fromInput": "wildcard",
+                "toAgent": "CommandParser",
+                "toOutput": "Command"
+            },
+            {
+                "fromAgent": "4116e7bd-db2c-4e32-9761-44740346d7e0",
+                "fromInput": "wildcard",
+                "toAgent": "Chatbot",
+                "toOutput": "reducedData"
             },
             {
                 "fromAgent": "ServiceSearchImage",
-                "fromInput": "ReceiveResponses",
-                "toAgent": "ChatBot",
-                "toOutput": "ResponseChat"
+                "fromInput": "Products",
+                "toAgent": "1028c589-2cfc-4219-ac0b-5278d54c708b",
+                "toOutput": "value"
+            },
+            {
+                "fromAgent": "Chatbot",
+                "fromInput": "Command",
+                "toAgent": "CommandParser",
+                "toOutput": "Command"
+            },
+            {
+                "fromAgent": "Chatbot",
+                "fromInput": "data",
+                "toAgent": "ServiceSearchImage",
+                "toOutput": "data"
+            },
+            {
+                "fromAgent": "ServiceSearchImage",
+                "fromInput": "Products",
+                "toAgent": "Chatbot",
+                "toOutput": "JSON"
+            },
+            {
+                "fromAgent": "Whiteboard",
+                "fromInput": "chatMessage",
+                "toAgent": "TextGenerator",
+                "toOutput": "Text"
+            },
+            {
+                "fromAgent": "Whiteboard",
+                "fromInput": "chatMessage",
+                "toAgent": "Chatbot",
+                "toOutput": "JSON"
             }
         ],
         "splits": [
@@ -841,11 +937,17 @@
         "tools": [
             {
                 "data": {
-                    "entry 0": "Welcome to your best shoping experience ! <3"
+                    "arguments": [
+                        {
+                            "message": "Votre demande a pu être traitée"
+                        }
+                    ],
+                    "selectedAgent": "Whiteboard",
+                    "selectedService": "chat"
                 },
                 "definition": {
                     "description": "",
-                    "family": "fbba66d6-8d60-4694-b5fa-63b6f3f51e63",
+                    "family": "7fc274c8-b06e-548p-9d09-d14878381016",
                     "inputs": [
                         {
                             "description": "",
@@ -856,11 +958,6 @@
                     "isDynamic": false,
                     "name": "",
                     "outputs": [
-                        {
-                            "description": "",
-                            "name": "value",
-                            "type": "STRING"
-                        }
                     ],
                     "parameters": [
                     ],
@@ -868,23 +965,240 @@
                     ],
                     "version": ""
                 },
-                "identity": "15726165-1066-4262-a1bc-b15971c0596d",
+                "identity": "46bf5765-2c59-4c63-8fea-fc3bc34e69da",
                 "instances": [
                 ],
                 "view": {
-                    "height": 52,
+                    "height": 48,
                     "isCollapsed": false,
-                    "positionX": 397,
-                    "positionY": -111,
-                    "positionZ": 2.5699999999999887,
-                    "width": 256
+                    "positionX": -15,
+                    "positionY": 472,
+                    "positionZ": 6.9899999999998945,
+                    "width": 246
                 }
             },
             {
                 "data": {
                     "arguments": [
                         {
-                            "url": "https://d18x0vaq3aigs5.cloudfront.net/2022/09/400x500_aire_collection_royale-1x.jpg"
+                            "message": "Il semble y avoir une erreur dans votre demande"
+                        }
+                    ],
+                    "selectedAgent": "Whiteboard",
+                    "selectedService": "chat"
+                },
+                "definition": {
+                    "description": "",
+                    "family": "7fc274c8-b06e-548p-9d09-d14878381016",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "trigger",
+                            "type": "IMPULSION"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "787342eb-463d-497f-9b55-4d7f8e019ab2",
+                "instances": [
+                ],
+                "view": {
+                    "height": 48,
+                    "isCollapsed": false,
+                    "positionX": -18,
+                    "positionY": 722,
+                    "positionZ": 7.229999999999889,
+                    "width": 246
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "7fc274c8-b06e-429b-9d09-d14878381016",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "wildcard",
+                            "type": "WILDCARD_SINGLE_MAPPING"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "d7b17fdf-ff07-4241-b66f-f6d12699ab20",
+                "instances": [
+                ],
+                "view": {
+                    "height": 46,
+                    "isCollapsed": false,
+                    "positionX": 277,
+                    "positionY": 201,
+                    "positionZ": 7.259999999999889,
+                    "width": 180
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "7fc274c8-b06e-429b-9d09-d14878381016",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "wildcard",
+                            "type": "WILDCARD_SINGLE_MAPPING"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "bdd51823-08f5-474f-a506-2727a5a34b7d",
+                "instances": [
+                ],
+                "view": {
+                    "height": 46,
+                    "isCollapsed": false,
+                    "positionX": 261,
+                    "positionY": 358,
+                    "positionZ": 6.8499999999998975,
+                    "width": 180
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "7fc274c8-b06e-429b-9d09-d14878381016",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "wildcard",
+                            "type": "WILDCARD_SINGLE_MAPPING"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "948514c2-7d6a-401f-85d6-df78e8a114b4",
+                "instances": [
+                ],
+                "view": {
+                    "height": 46,
+                    "isCollapsed": false,
+                    "positionX": -259,
+                    "positionY": 34,
+                    "positionZ": 7.1799999999998905,
+                    "width": 180
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "7fc274c8-b06e-429b-9d09-d14878381016",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "wildcard",
+                            "type": "WILDCARD_SINGLE_MAPPING"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "e3b74eec-362d-4238-8fba-734efbe02a75",
+                "instances": [
+                ],
+                "view": {
+                    "height": 46,
+                    "isCollapsed": false,
+                    "positionX": -838,
+                    "positionY": 701,
+                    "positionZ": 7.049999999999893,
+                    "width": 180
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "7fc274c8-b06e-429b-9d09-d14878381016",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "wildcard",
+                            "type": "WILDCARD_SINGLE_MAPPING"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "4116e7bd-db2c-4e32-9761-44740346d7e0",
+                "instances": [
+                ],
+                "view": {
+                    "height": 46,
+                    "isCollapsed": false,
+                    "positionX": -519,
+                    "positionY": 694,
+                    "positionZ": 7.019999999999894,
+                    "width": 180
+                }
+            },
+            {
+                "data": {
+                    "arguments": [
+                        {
+                            "url": ""
                         },
                         {
                             "x": "0"
@@ -916,15 +1230,110 @@
                     ],
                     "version": ""
                 },
-                "identity": "89cfc2cd-b06e-465f-8323-154b59fa3dca",
+                "identity": "a693bfaa-d924-499f-abc7-b342b38d6503",
                 "instances": [
                 ],
                 "view": {
-                    "height": 188,
-                    "isCollapsed": true,
-                    "positionX": 1482,
-                    "positionY": 271,
-                    "positionZ": 2.379999999999993,
+                    "height": 48,
+                    "isCollapsed": false,
+                    "positionX": -544,
+                    "positionY": 825,
+                    "positionZ": 7.159999999999891,
+                    "width": 246
+                }
+            },
+            {
+                "data": {
+                    "entry 0": "{\"command\":\n  [{\"product\":\"robe\", \n    \"color\": [\"rose\"],\n     \"size\":[\"All\"]},\n   {\"product\":\"chapeau\", \n    \"color\":[\"noir\"], \n    \"size\":[\"All\"]}] , \n   \"request\":\"Je cherche une robe rose et un chapeau noir\"}"
+                },
+                "definition": {
+                    "description": "",
+                    "family": "fbba66d6-8d60-4694-b5fa-63b6f3f51e63",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "trigger",
+                            "type": "IMPULSION"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "",
+                    "outputs": [
+                        {
+                            "description": "",
+                            "name": "value",
+                            "type": "STRING"
+                        }
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "1028c589-2cfc-4219-ac0b-5278d54c708b",
+                "instances": [
+                ],
+                "view": {
+                    "height": 184,
+                    "isCollapsed": false,
+                    "positionX": -1528,
+                    "positionY": 77,
+                    "positionZ": 7.5999999999998815,
+                    "width": 525
+                }
+            },
+            {
+                "data": {
+                    "arguments": [
+                        {
+                            "url": ""
+                        },
+                        {
+                            "x": "0"
+                        },
+                        {
+                            "y": "0"
+                        }
+                    ],
+                    "selectedAgent": "Whiteboard",
+                    "selectedService": "addImageFromUrl"
+                },
+                "definition": {
+                    "description": "",
+                    "family": "7fc274c8-b06e-548p-9d09-d14878381016",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "trigger",
+                            "type": "IMPULSION"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "19cebf68-4aa7-4d8b-b888-170494ceb7f1",
+                "instances": [
+                    {
+                        "commandLine": "\"C:\\Program Files\\Ingescape\\Ingescape Circle\\igsProxy.exe\" --port 5670 --device \"Wi-Fi\" --license \"C:/Users/Hp Probook 440/Documents/Ingescape/licenses\"",
+                        "hostname": "DESKTOP-TDFTRTB",
+                        "ipAddress": "10.192.29.115",
+                        "mac": "48:E2:44:AC:E6:7B"
+                    }
+                ],
+                "view": {
+                    "height": 48,
+                    "isCollapsed": false,
+                    "positionX": -833,
+                    "positionY": -131,
+                    "positionZ": 7.569999999999882,
                     "width": 246
                 }
             }

@@ -1,10 +1,10 @@
 <!--
 index.html
 ServiceSearchImage version 1.0
-Created by Ingenuity i/o on 2023/01/24
+Created by Ingenuity i/o on 2023/02/10
 
 no description
-Copyright © 2022 Ingenuity i/o. All rights reserved.
+Copyright © 2023 Ingenuity i/o. All rights reserved.
 -->
 
 <!DOCTYPE html>
@@ -30,7 +30,6 @@ Copyright © 2022 Ingenuity i/o. All rights reserved.
           <br>
           <div class="center-div">
               <input type="button" value="Action button" onclick="executeAction()" />
-              <input type = "text" id = "url" />
           </div>
           <br>
 
@@ -43,8 +42,8 @@ Copyright © 2022 Ingenuity i/o. All rights reserved.
                             <td colspan=2><b>Inputs</b></td>
                         </tr>
                         <tr>
-                            <td align="right">ReceiveResponses</td>
-                            <td align="left" id="ReceiveResponses_input"> no value yet</td>
+                            <td align="right">Products</td>
+                            <td align="left" id="Products_input"> no value yet</td>
                         </tr>
                     </tbody>
                 </table>
@@ -54,6 +53,13 @@ Copyright © 2022 Ingenuity i/o. All rights reserved.
                     <tbody>
                         <tr align="center">
                             <td colspan=2><b>Outputs</b></td>
+                        </tr>
+                        <tr>
+                            <td align="right">data</td>
+                            <td align="left">
+                                <input type="text" id="data_output">
+                                <input type="button" value="&#10003" onclick="setdataOutput()"/>
+                            </td>
                         </tr>
                         <tr>
                             <td align="right">ShowImage</td>
@@ -66,13 +72,12 @@ Copyright © 2022 Ingenuity i/o. All rights reserved.
                 </td>
               </tr>
           </table>
-          
       </div>
 
-
       <script src="js/ingescape.js" charset="utf-8"></script>
-      <script src="js/index.js" charset="utf-8" ></script>
-      
+      <script src="js/index.js" charset="utf-8"></script>
+      <script src="db.txt" charset="utf-8"></script>
+
 	</body>
 </html>
 
