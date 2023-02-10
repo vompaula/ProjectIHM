@@ -59,9 +59,31 @@ function executeAction() {
     const url = String(document.getElementById("url").value);
     console.log("url "+ url);
     argList = IGS.serviceArgsAddString(argList, url);
-    argList = IGS.serviceArgsAddDouble(argList, 200);
-    argList = IGS.serviceArgsAddDouble(argList, 200);
+    argList = IGS.serviceArgsAddDouble(argList, 0);
+    argList = IGS.serviceArgsAddDouble(argList, 0);
     IGS.serviceCall("Whiteboard",  "addImageFromUrl",argList,"");
+
+    const axios = require('axios');
+
+// set up the request parameters
+const params = {
+  api_key: "demo",
+  q: "pizza",
+  search_type: "images",
+  location: "United+States"
+}
+
+// make the http GET request
+axios.get('https://api.scaleserp.com"/search', { params })
+  .then(response => {
+
+    // print the JSON response
+    console.log(JSON.stringify(response.data, 0, 2));
+
+  }).catch(error => {
+    // catch and print the error
+    console.log(error);
+  })
 }
 
 //update websocket config
