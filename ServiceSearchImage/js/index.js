@@ -7,6 +7,32 @@
 //  Copyright © 2022 Ingenuity i/o. All rights reserved.
 //
 
+import fetch from "node-fetch";
+import {Headers} from 'node-fetch';
+
+async function searchImage(q) {
+    const headers = new Headers();  
+    headers.append('Ocp-Apim-Subscription-Key', 'f5980cef6ae84861886d83f8020d6515');
+    var res
+    let urls = []
+    await fetch("https://api.bing.microsoft.com/v7.0/images/search?&q="+q, {
+        method: 'GET',
+        headers: {
+            'Ocp-Apim-Subscription-Key': 'f5980cef6ae84861886d83f8020d6515'
+        }
+    })
+        .then(response => response.json())
+        .then(response => res = response)
+        .catch(error => console.log("Erreur : " + error));
+    for (const i of res.value) {
+        urls.push(i.contentUrl)
+    }
+    return urls
+}
+
+var a = await searchImage("totoro");
+console.log(a)
+
 //server connection
 function isConnectedToServerChanged(isConnected)
 {
